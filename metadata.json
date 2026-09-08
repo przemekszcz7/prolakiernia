@@ -1,0 +1,6 @@
+{
+  "name": "Pro Lakiernia",
+  "description": "Pro Lakiernia — lakiernictwo, renowacje i detailing w Białymstoku. Perfekcja w każdym detalu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
