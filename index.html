@@ -16,16 +16,27 @@
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="https://i.ibb.co/rfdwkWsL/791755635-1743509474443418-5161997724615481439-n-1.jpg" />
 
+  <!-- Critical Network Preconnect & DNS-Prefetch for Image CDN & Fonts -->
+  <link rel="preconnect" href="https://i.ibb.co" crossorigin />
+  <link rel="dns-prefetch" href="https://i.ibb.co" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+
   <!-- Preload hero image for maximum LCP speed -->
   <link rel="preload" as="image" href="https://i.ibb.co/3yHWsd28/503652186-1320436600084043-3281247595060650533-n.jpg" fetchpriority="high" />
 
-  <!-- High-End Professional Fonts: Cinzel (Architectural Luxury Display) & Plus Jakarta Sans (Precision Geometric Modern) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <!-- High-End Professional Fonts: Non-render-blocking asynchronous font delivery -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </noscript>
 
-  <!-- Lucide Icons Library -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide Icons Library (Deferred to prevent render blocking) -->
+  <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" defer></script>
 
   <style>
     /* ==========================================================================
@@ -234,11 +245,11 @@
       color: #ffffff;
     }
 
-    /* Mobile smooth animations */
+    /* Smooth high-performance animations */
     .reveal {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+      transform: translateY(18px);
+      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
       will-change: opacity, transform;
     }
 
@@ -247,9 +258,30 @@
       transform: translateY(0);
     }
 
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+
+    /* Instant zero-delay paint for Hero above-the-fold content */
+    #hero .reveal {
+      opacity: 1;
+      transform: none;
+      animation: heroInstantPaint 0.5s var(--ease-out) both;
+    }
+    #hero .reveal-delay-1 { animation-delay: 0.05s; }
+    #hero .reveal-delay-2 { animation-delay: 0.1s; }
+    #hero .reveal-delay-3 { animation-delay: 0.15s; }
+
+    @keyframes heroInstantPaint {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     /* ==========================================================================
        2. NAVIGATION
@@ -1667,6 +1699,9 @@
           src="https://i.ibb.co/3yHWsd28/503652186-1320436600084043-3281247595060650533-n.jpg"
           alt="Pro Lakiernia Białystok - powłoki lakiernicze i detailing"
           id="hero-image"
+          width="1920"
+          height="1080"
+          loading="eager"
           fetchpriority="high"
           decoding="async"
         />
@@ -1854,6 +1889,8 @@
             <img
               src="https://i.ibb.co/3yHWsd28/503652186-1320436600084043-3281247595060650533-n.jpg"
               alt="Realizacja Pro Lakiernia - precyzyjne wykończenie lakiernicze"
+              width="800"
+              height="600"
               loading="eager"
               decoding="async"
             />
@@ -1877,6 +1914,8 @@
             <img
               loading="lazy"
               decoding="async"
+              width="800"
+              height="600"
               src="https://i.ibb.co/MdN6930/503853506-1320436556750714-2701802704006488783-n.jpg"
               alt="Realizacja Pro Lakiernia - detal nadwozia"
             />
@@ -1900,6 +1939,8 @@
             <img
               loading="lazy"
               decoding="async"
+              width="800"
+              height="600"
               src="https://i.ibb.co/vxKZpMFq/503347379-1320436590084044-3330987667468431102-n.jpg"
               alt="Realizacja Pro Lakiernia - renowacja powierzchni"
             />
@@ -1923,6 +1964,8 @@
             <img
               loading="lazy"
               decoding="async"
+              width="800"
+              height="600"
               src="https://i.ibb.co/cchcvLrk/503559596-1320436543417382-7804972986517332029-n.jpg"
               alt="Realizacja Pro Lakiernia - przygotowanie i lakierowanie"
             />
@@ -1946,6 +1989,8 @@
             <img
               loading="lazy"
               decoding="async"
+              width="800"
+              height="600"
               src="https://i.ibb.co/Kx7dsWqm/503702193-1320436570084046-4106491681903206583-n.jpg"
               alt="Realizacja Pro Lakiernia - odcięcie powłoki"
             />
@@ -1969,6 +2014,8 @@
             <img
               loading="lazy"
               decoding="async"
+              width="800"
+              height="600"
               src="https://i.ibb.co/M5nTZTfq/503647742-1320436833417353-7291352407665263726-n.jpg"
               alt="Realizacja Pro Lakiernia - lakierowanie nadwozia"
             />
@@ -1992,6 +2039,8 @@
             <img
               loading="lazy"
               decoding="async"
+              width="800"
+              height="600"
               src="https://i.ibb.co/7xLV63kB/503604884-1320436843417352-5811784519022606432-n.jpg"
               alt="Realizacja Pro Lakiernia - głębia koloru"
             />
@@ -2015,6 +2064,8 @@
             <img
               loading="lazy"
               decoding="async"
+              width="800"
+              height="600"
               src="https://i.ibb.co/Mxyg3C1d/504020723-1320436550084048-3755272673057961011-n.jpg"
               alt="Realizacja Pro Lakiernia - lakiernia Białystok"
             />
@@ -2038,6 +2089,8 @@
             <img
               loading="lazy"
               decoding="async"
+              width="800"
+              height="600"
               src="https://i.ibb.co/zTZVShCd/503678015-1320436560084047-7529258215367907762-n.jpg"
               alt="Realizacja Pro Lakiernia - polerowanie i finisz"
             />
@@ -2428,7 +2481,7 @@
               }
             });
           },
-          { root: null, rootMargin: '0px 0px -30px 0px', threshold: 0.1 }
+          { root: null, rootMargin: '120px 0px 50px 0px', threshold: 0.05 }
         );
 
         revealElements.forEach(function (el) {
@@ -2534,9 +2587,17 @@
       });
 
       /* --- 5. Lucide Icons Initialization --- */
-      if (window.lucide && typeof window.lucide.createIcons === 'function') {
-        window.lucide.createIcons();
+      function initIcons() {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
       }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initIcons);
+      } else {
+        initIcons();
+      }
+      window.addEventListener('load', initIcons);
 
     })();
   </script>
